@@ -1,0 +1,43 @@
+version: "1.0"
+services:
+  app:
+    image: USER_APP_IMAGE
+    expose:
+      - port: APP_PORT
+        as: APP_PORT_AS
+        to:
+          - global: true
+    env: APP_ENV_VARS
+
+
+profiles:
+  name: template-app
+  mode: MODE
+  duration: DURATION
+  tier:
+    - community
+  compute:
+    app:
+      resources:
+        cpu:
+          units: APP_CPU
+        memory:
+          size: APP_MEMORY
+        storage:
+          size: APP_STORAGE
+
+
+  placement:
+    westcoast:
+      attributes:
+        region: us-central
+      pricing:
+        app:
+          token: uSPON
+          amount: 5
+
+deployment:
+  app:
+    westcoast:
+      profile: app
+      count: 1

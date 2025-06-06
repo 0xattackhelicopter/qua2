@@ -1,0 +1,23 @@
+# Use Node.js 20 as the base image
+FROM --platform=linux/amd64 node:18
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy application source
+COPY . .
+
+# Expose the application port
+EXPOSE 9100
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Run the application
+CMD ["npm", "start"]

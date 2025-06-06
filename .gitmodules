@@ -1,0 +1,3 @@
+[submodule "orchestrator/aqua"]
+	path = orchestrator/aqua
+	url = https://github.com/Aquanodeio/aqua.git

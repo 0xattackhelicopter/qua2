@@ -1,0 +1,24 @@
+FROM --platform=linux/amd64 node:23-alpine
+
+# Install git for repository operations
+RUN apk add --no-cache git
+
+# Copy orchestrator directory
+COPY orchestrator/ /orchestrator/
+
+# Directly clone the aqua repository
+WORKDIR /orchestrator
+RUN git clone https://github.com/Aquanodeio/aqua.git
+
+# Verify the aqua directory contents
+RUN ls -la /orchestrator/aqua
+
+# Build the application
+RUN npm ci && npm run build
+
+# Expose the proxy port
+ENV PORT=3040
+EXPOSE 3040
+
+# Run the proxy service
+CMD ["npm", "run", "start"]

@@ -1,0 +1,22 @@
+FROM --platform=linux/amd64 node:20-alpine
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY orchestrator/package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the application
+COPY orchestrator/ .
+
+# Build the application
+RUN npm run build
+
+# Expose the proxy port
+ENV PORT=3040
+EXPOSE 3040
+
+# Run the proxy service
+CMD ["npm", "run", "proxy"]

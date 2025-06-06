@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "declaration": true,
+      "outDir": "dist",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "lib": ["ES2022", "dom"],
+      "allowJs": true,
+      "resolveJsonModule": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "sourceMap": true,
+      "noImplicitAny": false,
+      "isolatedModules": true,
+      "baseUrl": "..",
+      "paths": {}
+    },
+    "ts-node": {
+      "esm": true
+    },
+    "include": ["src/**/*", "test/**/*", "../aqua/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
